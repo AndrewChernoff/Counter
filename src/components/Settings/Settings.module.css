@@ -1,0 +1,28 @@
+.settings {
+    margin: 30px auto 0 auto;
+    max-width: 350px;
+}
+
+.settingsBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.input {
+    outline: none;
+    height: 20px;
+    width: 150px;
+}
+
+.errorInput {
+    outline: none;
+    height: 20px;
+    width: 150px;
+    border: red 2px solid;
+}
+
+.errorInput:focus {
+    border: red 2px solid;
+}

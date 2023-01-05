@@ -1,0 +1,42 @@
+.counter {
+    max-width: 500px;
+    margin: 10% auto 0 auto;
+    border: hotpink 2px solid;
+    border-radius: 10px;
+    height: 250px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 35px auto 0 auto;
+    max-width: 350px;
+}
+
+/* .buttons */ button {
+    color: white;
+    width: 110px;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.value {
+    color: white;
+    padding: 20px;
+    text-align: center;
+    max-width: 350px;
+    margin: 30px auto 0 auto;
+    height: 70px;
+    border-radius: 10px;
+    background: #9393ce;
+}
+
+.valueNumber {
+    font-size: 40px;
+}
+
+.reached {
+    font-size: 20px;
+    color: red;
+}
