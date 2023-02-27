@@ -7,7 +7,7 @@ type CounterProps = {
 
 const Counter = ({value, maxValue} : CounterProps) => {
  
-    const isNumberReached = value === maxValue ? 'Max number is reached' : null
+const isNumberReached = value === maxValue ? 'Max number is reached' : null
 
  return <div className={s.value}>
         <div className={s.valueNumber}>{value}</div>

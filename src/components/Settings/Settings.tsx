@@ -1,53 +1,33 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import s from './Settings.module.css';
 import Button from '../Button';
+import { useSelector } from 'react-redux';
+import { AppStoreType } from '../../redux/store';
+import { useDispatch } from 'react-redux';
+import { setCounterValueAC, setMaxValueAC, setMinValueAC } from '../../redux/reducers/counterReducer';
 
 type SettingsProps = {
     onSetClick: () => void
-    setMaxValue: (e: any) =>  void
-    setMinValue: (e: any) =>  void
+    setMaxValue: (e: ChangeEvent<HTMLInputElement>) =>  void
+    setMinValue: (e: ChangeEvent<HTMLInputElement>) =>  void
     setValues: (max: number, min: number) => void
     maxValue: number
     minValue: number
 }
 
 const Settings = ({onSetClick, setValues} : SettingsProps) => {
-
-    let [max, setMax] = useState<number>(Number(localStorage.getItem('maxSettings')) || 5);
-    let [min, setMin] = useState<number>(Number(localStorage.getItem('minSettings')) || 0);
-    const [error, setError] = useState<boolean>(false); ///make button disabled
-
-    useEffect(() => {
-        let maxValue = localStorage.getItem('maxSettings'); 
-        let minValue = localStorage.getItem('minSettings');
-
-        if (maxValue) {
-            setMax(JSON.parse(maxValue))
-        }
-
-        if (minValue) {
-            setMin(JSON.parse(minValue))
-        }
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('maxSettings', JSON.stringify(max));
-        localStorage.setItem('minSettings', JSON.stringify(min));
-    }, [max, min])
-
+    const dispatch = useDispatch()
+    const max = useSelector<AppStoreType, number>(state => state.counter.maxValue)
+    const min = useSelector<AppStoreType, number>(state => state.counter.minValue)
     
-    const onMaxChange = (e: any) => {
-        setMax(Number(e.currentTarget.value))
-        localStorage.setItem('maxSettings', JSON.stringify(max));
+    const onMaxChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(setMaxValueAC(Number(e.currentTarget.value)))
     }
 
-    const onMinChange = (e: any) => {
-        setMin(Number(e.currentTarget.value))
-        localStorage.setItem('minSettings', JSON.stringify(min));
-    }
+    const onMinChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(setMinValueAC(Number(e.currentTarget.value)))
 
-    
-    let disabled = max < 0 || min < 0 || max < min || max === min 
+    }
 
     const isDisabled = () => {
         if (max < 0 || min < 0 || max < min || max === min) {
@@ -70,6 +50,7 @@ const Settings = ({onSetClick, setValues} : SettingsProps) => {
             
         <Button title={'set'} isDisabled={isDisabled()} callback={() => {
             setValues(max, min)
+            dispatch(setCounterValueAC(min))
             onSetClick()
         }} />
         </div>
