@@ -24,7 +24,7 @@ function App() {
     } 
   } 
    
-   const onReset = () => dispatch(resetCounterValueAC())
+   const onReset = () => dispatch(resetCounterValueAC(minValue))
    const onSetClick = () => setIsSet(!isSet);
 
    const onSetMaxValue = (e: ChangeEvent<HTMLInputElement>) => dispatch(setMaxValueAC(Number(e.currentTarget.value)))

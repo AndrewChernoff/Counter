@@ -24,7 +24,7 @@ const counterReducer = (state=initialState, action: ActionType): CounterType => 
         case 'INC':
             return {...state, counterValue: action.payload}
         case 'RES':
-            return {...state, counterValue: 0}
+            return {...state, counterValue: action.payload}
         case 'SET_MAX':
             return {...state, maxValue: action.payload}
         case 'SET_MIN':
@@ -40,7 +40,7 @@ const counterReducer = (state=initialState, action: ActionType): CounterType => 
 export const setMaxValueAC = (payload: number) => ({type: 'SET_MAX', payload}) as const
 export const setMinValueAC = (payload: number) => ({type: 'SET_MIN', payload}) as const
 export const incrementAC = (payload: number) =>({ type: 'INC', payload }) as const
-export const resetCounterValueAC = () => ({type:'RES'}) as const
+export const resetCounterValueAC = (payload: number) => ({type:'RES', payload}) as const
 export const setCounterValueAC = (payload: number) => ({type:'SET_COUNTER_VALUE', payload}) as const
 
 export default counterReducer
